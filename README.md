@@ -4,7 +4,7 @@ Chuck Sailer - July 11th, 2003
 <img src="assets/title.png" height="200px" width="200px"/>
 </div>
 
-This repo is for understanding the ```Go``` handles concurrency.
+This repo is for understanding how ```Go``` handles concurrency.
 
 *Concurrency* is a core feature in Go programming language. It allows multiple tasks to run independently at the same time, making the most of computing resources and improving performance in applications such as web servers, data pipelines, and more. Concurrency in Go is achieved using goroutines and channels, which provide a way to structure concurrent code that is robust, efficient, and easier to reason about compared to traditional thread-based concurrency models.
 
