@@ -8,14 +8,32 @@ import (
 var msg string
 var wg sync.WaitGroup
 
+func main() {
+	// Uncomment and run: go run --race . from the terminal in this directory
+	// raceCondition()
+	
+	// Uncomment and run: go run --race . from the terminal in this directory
+	withMutex()
+}
+
+
 func updateMsg(s string) {
 	defer wg.Done()
 	msg = s
 }
 
-func main() {
-	raceCondition()
+func updateMsgWithMutex(s string, m *sync.Mutex) {
+	defer wg.Done()
+	// Lock the mutex to ensure only one goroutine can access the msg variable at a time.
+	m.Lock()
+	msg = s
+	// Unlock the mutex to allow other goroutines to access the msg variable.
+	// If you didn't unlock the mutex, the other goroutines would be blocked forever and this
+	// is known as a deadlock.
+	m.Unlock()
 }
+
+
 
 func raceCondition() {
 	// when we run this program, we will get different results order.
@@ -56,7 +74,17 @@ func raceCondition() {
 	*/
 	wg.Add(2)
 	go updateMsg("Hello")
+	
 	go updateMsg("World")
+	wg.Wait()
+	fmt.Println(msg)
+}
+
+func withMutex() {
+	var mutex sync.Mutex
+	wg.Add(2)
+	go updateMsgWithMutex("Hello", &mutex)
+	go updateMsgWithMutex("World", &mutex)
 	wg.Wait()
 	fmt.Println(msg)
 }
