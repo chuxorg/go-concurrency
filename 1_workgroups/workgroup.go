@@ -1,4 +1,4 @@
-package main
+package workgroups
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ func printSomething(s string, wg *sync.WaitGroup) {
 	fmt.Println(s)
 }
 
-func main() {
+func workgroupExample() {
 	var wg sync.WaitGroup
 
 	words := []string{

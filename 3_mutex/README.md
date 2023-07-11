@@ -346,7 +346,7 @@ Return to the ```main.go``` file, uncomment ```threadSafeBalance()``` in the ```
 $ go run --race .
 ```
 
-Now, the race condition is gone and the function works as expected all thanks to the lock and unlock methods of the ```Mutex```
+Now, the race condition is gone and the function works as expected all thanks to the lock and unlock methods of the ```Mutex```. 
 
 ```shell
 $ go run --race . 
